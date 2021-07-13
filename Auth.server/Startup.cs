@@ -1,22 +1,19 @@
-using IdentityServer4.Models;
-using IdentityServer4.Test;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Collections.Generic;
 
 namespace Auth.server {
     public class Startup {
         public void ConfigureServices(IServiceCollection services) {
             services.AddIdentityServer()
-                .AddInMemoryClients(Config.Clients)
+                .AddInMemoryClients(Config.Clients) // list of clients app
                 .AddInMemoryIdentityResources(Config.IdentityResources)
-                .AddInMemoryApiResources(Config.ApiResources)
+                .AddInMemoryApiResources(Config.ApiResources) // list of apis
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddTestUsers(Config.TestUsers)
-                .AddDeveloperSigningCredential();
+                .AddDeveloperSigningCredential(); //gen dev jvk
         }
 
 
